@@ -14,19 +14,19 @@ class DoctorsTab(QWidget):
 
     def init_ui(self):
         self.table = QTableWidget()
-        self.table.setColumnCount(5)
+        self.table.setColumnCount(4)
         self.table.setHorizontalHeaderLabels([
-            "Фамилия", "Имя", "Отчество", "Специальность", "Категория"
+            "Фамилия", "Имя", "Отчество", "Специальность"
         ])
         self.table.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
 
         self.add_btn = QPushButton("Добавить врача", clicked=self.show_add_dialog)
-        self.edit_btn = QPushButton("Редактировать", clicked=self.show_edit_dialog)
+        
         self.delete_btn = QPushButton("Удалить", clicked=self.delete_doctor)
 
         btn_layout = QHBoxLayout()
         btn_layout.addWidget(self.add_btn)
-        btn_layout.addWidget(self.edit_btn)
+        
         btn_layout.addWidget(self.delete_btn)
 
         main_layout = QVBoxLayout()
@@ -45,7 +45,6 @@ class DoctorsTab(QWidget):
                 self.table.setItem(row, 1, QTableWidgetItem(doctor['first_name']))
                 self.table.setItem(row, 2, QTableWidgetItem(doctor['middle_name']))
                 self.table.setItem(row, 3, QTableWidgetItem(doctor['specialty']))
-                self.table.setItem(row, 4, QTableWidgetItem(doctor['category']))
                 self.table.item(row, 0).setData(Qt.ItemDataRole.UserRole, doctor['id'])
                 
         except Exception as e:

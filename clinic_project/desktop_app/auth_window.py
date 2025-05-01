@@ -1,12 +1,13 @@
 from PyQt6.QtWidgets import QWidget, QLineEdit, QPushButton, QVBoxLayout, QMessageBox
 import requests
-
+import sys
 class AuthWindow(QWidget):
     def __init__(self, on_success=None):  # Сделайте on_success необязательным
         super().__init__()
         self.on_success = on_success  # Сохраняем callback
         self.init_ui()
         self.setFixedSize(300, 150)
+        
 
     def init_ui(self):
         self.setWindowTitle("Авторизация")
@@ -24,12 +25,15 @@ class AuthWindow(QWidget):
         layout.addWidget(self.username_input)
         layout.addWidget(self.password_input)
         layout.addWidget(self.login_btn)
+        self.close()
         self.setLayout(layout)
+        
         
         
 
     def set_on_success(self, callback):  # Добавьте метод для установки callback
         self.on_success = callback
+        
 
 
     def authenticate(self):

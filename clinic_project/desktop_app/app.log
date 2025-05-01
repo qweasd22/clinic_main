@@ -113,3 +113,31 @@
 2025-05-01 14:45:08,827 [DEBUG] http://localhost:18800 "GET /api/admin/services/ HTTP/1.1" 200 187
 2025-05-01 14:45:21,956 [DEBUG] http://localhost:18800 "POST /api/admin/doctors/ HTTP/1.1" 201 201
 2025-05-01 14:45:21,960 [DEBUG] http://localhost:18800 "GET /api/admin/doctors/ HTTP/1.1" 200 378
+2025-05-01 14:54:55,171 [DEBUG] Starting new HTTP connection (1): localhost:18800
+2025-05-01 14:54:58,117 [DEBUG] http://localhost:18800 "POST /api-token-auth/ HTTP/1.1" 200 52
+2025-05-01 14:54:58,119 [DEBUG] Starting new HTTP connection (1): localhost:18800
+2025-05-01 14:55:00,167 [DEBUG] http://localhost:18800 "GET /api/admin/services/ HTTP/1.1" 200 187
+2025-05-01 14:55:00,191 [DEBUG] http://localhost:18800 "GET /api/admin/visits/ HTTP/1.1" 200 145
+2025-05-01 14:55:00,196 [DEBUG] http://localhost:18800 "GET /api/admin/doctors/ HTTP/1.1" 200 378
+2025-05-01 14:55:00,202 [DEBUG] http://localhost:18800 "GET /api/admin/services/ HTTP/1.1" 200 187
+2025-05-01 14:55:00,207 [DEBUG] http://localhost:18800 "GET /api/admin/services/ HTTP/1.1" 200 187
+2025-05-01 14:55:57,195 [DEBUG] Starting new HTTP connection (1): localhost:18800
+2025-05-01 14:56:00,060 [DEBUG] http://localhost:18800 "POST /api-token-auth/ HTTP/1.1" 200 52
+2025-05-01 14:56:00,062 [DEBUG] Starting new HTTP connection (1): localhost:18800
+2025-05-01 14:56:02,097 [DEBUG] http://localhost:18800 "GET /api/admin/services/ HTTP/1.1" 200 187
+2025-05-01 14:56:02,121 [DEBUG] http://localhost:18800 "GET /api/admin/visits/ HTTP/1.1" 200 145
+2025-05-01 14:56:02,127 [DEBUG] http://localhost:18800 "GET /api/admin/doctors/ HTTP/1.1" 200 378
+2025-05-01 14:56:02,132 [DEBUG] http://localhost:18800 "GET /api/admin/services/ HTTP/1.1" 200 187
+2025-05-01 14:56:02,138 [DEBUG] http://localhost:18800 "GET /api/admin/services/ HTTP/1.1" 200 187
+2025-05-01 14:56:04,918 [DEBUG] http://localhost:18800 "DELETE /api/admin/services/None/ HTTP/1.1" 404 23
+2025-05-01 14:56:10,104 [DEBUG] http://localhost:18800 "DELETE /api/admin/services/None/ HTTP/1.1" 404 23
+2025-05-01 14:56:14,855 [DEBUG] http://localhost:18800 "DELETE /api/admin/services/None/ HTTP/1.1" 404 23
+2025-05-01 14:59:32,402 [INFO] ApiClient: Попытка удаления услуги ID: None
+2025-05-01 14:59:32,407 [ERROR] ApiClient: API Error: 404 Client Error: Not Found for url: http://localhost:18800/api/admin/services/None/
+2025-05-01 14:59:32,407 [ERROR] ApiClient: Неизвестная ошибка: API Request Failed: 404 Client Error: Not Found for url: http://localhost:18800/api/admin/services/None/
+2025-05-01 15:09:32,061 [INFO] ApiClient: Удаление услуги ID: 2
+2025-05-01 15:37:34,514 [ERROR] ApiClient: Ошибка получения имени пациента: 'bytes' object has no attribute 'get'
+2025-05-01 15:39:38,483 [ERROR] ApiClient: Ошибка получения имени пациента: 'bytes' object has no attribute 'get'
+2025-05-01 16:00:48,363 [ERROR] ApiClient: API Error: 404 Client Error: Not Found for url: http://localhost:18800/api/admin/users/1/
+2025-05-01 16:00:48,363 [ERROR] ApiClient: Ошибка: 404 Client Error: Not Found for url: http://localhost:18800/api/admin/users/1/
+2025-05-01 16:16:13,287 [ERROR] ApiClient: Ошибка получения имени врача: 'ApiClient' object has no attribute 'get_doctors'
