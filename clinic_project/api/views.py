@@ -1,6 +1,6 @@
 from rest_framework import viewsets, permissions
-from clinic.models import Doctor, Patient, Visit
-from .serializers import DoctorSerializer, PatientSerializer, VisitSerializer
+from clinic.models import Doctor, Patient, Visit, Service
+from .serializers import DoctorSerializer, PatientSerializer, VisitSerializer, ServiceSerializer
 
 class DoctorViewSet(viewsets.ModelViewSet):
     queryset = Doctor.objects.all()
@@ -16,3 +16,13 @@ class VisitViewSet(viewsets.ModelViewSet):
     queryset = Visit.objects.all()
     serializer_class = VisitSerializer
     permission_classes = [permissions.IsAdminUser]
+
+class ServiceViewSet(viewsets.ModelViewSet):
+    queryset = Service.objects.all()
+    serializer_class = ServiceSerializer
+    permission_classes = [permissions.IsAdminUser]
+    
+    # Дополнительные настройки при необходимости
+    filterset_fields = ['specialty']
+    search_fields = ['name']
+    ordering_fields = ['base_cost']

@@ -42,9 +42,28 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'api'
-    
+
+]
+API_URL ='http://localhost:18800'
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:18800",
+    "http://127.0.0.1:8000",
+    "app://*"
 ]
 
+CORS_ALLOW_METHODS = [
+    'GET',
+    'POST',
+    'PUT',
+    'DELETE',
+    'OPTIONS'
+]
+
+CORS_ALLOW_HEADERS = [
+    'Authorization',
+    'Content-Type',
+]
+INSTALLED_APPS += ['drf_yasg']
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
