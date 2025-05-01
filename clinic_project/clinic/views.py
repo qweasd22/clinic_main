@@ -29,16 +29,23 @@ def services_list(request):
     services = Service.objects.all()
     return render(request, 'clinic/services.html', {'services': services})
 
+def is_admin(user):
+    return user.is_staff
+from django.db.models import Prefetch
 @login_required
 def visits_list(request):
-    visits = Visit.objects.all().prefetch_related(
-        'services__service',
-        'services__doctor',
-        'patient__user'
-    )
-    
-    if not request.user.groups.filter(name='Admin').exists():
-        visits = visits.filter(patient=request.user.patient)
+    # Оптимизированный запрос для администратора
+    if request.user.groups.filter(name='Admin').exists():
+        visits = Visit.objects.all().select_related(
+            'patient__user', 
+            'doctor'
+        ).prefetch_related(
+            Prefetch('services', queryset=Service.objects.all())
+        )
+    else:
+        visits = Visit.objects.filter(
+            patient=request.user.patient
+        ).select_related('doctor').prefetch_related('services')
     
     return render(request, 'clinic/visits.html', {'visits': visits})
 

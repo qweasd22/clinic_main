@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'clinic',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'api'
     
 ]
 
@@ -53,7 +56,15 @@ MIDDLEWARE = [
     
 
 ]
-
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAdminUser',
+    ]
+}
 TEMPLATE_DIRS = (
     'clinic/templates',
     'clinic_project/templates',
