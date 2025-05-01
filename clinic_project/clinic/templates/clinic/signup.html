@@ -1,0 +1,209 @@
+{% extends 'clinic/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0 text-center">
+                        <i class="bi bi-person-plus me-2"></i>Регистрация пациента
+                    </h3>
+                </div>
+                
+                <div class="card-body p-4">
+                    <form method="post" novalidate>
+                        {% csrf_token %}
+                        
+                        <!-- Общие ошибки формы -->
+                        {% if form.errors %}
+                            <div class="alert alert-danger">
+                                Исправьте ошибки в форме
+                            </div>
+                        {% endif %}
+
+                        <div class="row g-3">
+                            <!-- Логин и Email -->
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" 
+                                           name="username" 
+                                           class="form-control {% if form.username.errors %}is-invalid{% endif %}" 
+                                           id="id_username" 
+                                           placeholder="Логин"
+                                           required>
+                                    <label for="id_username">
+                                        <i class="bi bi-person-badge me-1"></i> Логин
+                                    </label>
+                                    {% for error in form.username.errors %}
+                                        <div class="invalid-feedback">{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="email" 
+                                           name="email" 
+                                           class="form-control {% if form.email.errors %}is-invalid{% endif %}" 
+                                           id="id_email" 
+                                           placeholder="Email"
+                                           required>
+                                    <label for="id_email">
+                                        <i class="bi bi-envelope me-1"></i> Email
+                                    </label>
+                                    {% for error in form.email.errors %}
+                                        <div class="invalid-feedback">{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+
+                            <!-- Пароли -->
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="password" 
+                                           name="password1" 
+                                           class="form-control {% if form.password1.errors %}is-invalid{% endif %}" 
+                                           id="id_password1" 
+                                           placeholder="Пароль"
+                                           required>
+                                    <label for="id_password1">
+                                        <i class="bi bi-lock me-1"></i> Пароль
+                                    </label>
+                                    {% for error in form.password1.errors %}
+                                        <div class="invalid-feedback">{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="password" 
+                                           name="password2" 
+                                           class="form-control {% if form.password2.errors %}is-invalid{% endif %}" 
+                                           id="id_password2" 
+                                           placeholder="Подтверждение"
+                                           required>
+                                    <label for="id_password2">
+                                        <i class="bi bi-shield-lock me-1"></i> Повторите пароль
+                                    </label>
+                                    {% for error in form.password2.errors %}
+                                        <div class="invalid-feedback">{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+
+                            <!-- Личные данные -->
+                            <div class="col-md-4">
+                                <div class="form-floating">
+                                    <input type="text" 
+                                           name="last_name" 
+                                           class="form-control {% if form.last_name.errors %}is-invalid{% endif %}" 
+                                           id="id_last_name" 
+                                           placeholder="Фамилия"
+                                           required>
+                                    <label for="id_last_name">
+                                        <i class="bi bi-person me-1"></i> Фамилия
+                                    </label>
+                                    {% for error in form.last_name.errors %}
+                                        <div class="invalid-feedback">{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-floating">
+                                    <input type="text" 
+                                           name="first_name" 
+                                           class="form-control {% if form.first_name.errors %}is-invalid{% endif %}" 
+                                           id="id_first_name" 
+                                           placeholder="Имя"
+                                           required>
+                                    <label for="id_first_name">
+                                        <i class="bi bi-person me-1"></i> Имя
+                                    </label>
+                                    {% for error in form.first_name.errors %}
+                                        <div class="invalid-feedback">{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-floating">
+                                    <input type="text" 
+                                           name="middle_name" 
+                                           class="form-control {% if form.middle_name.errors %}is-invalid{% endif %}" 
+                                           id="id_middle_name" 
+                                           placeholder="Отчество">
+                                    <label for="id_middle_name">
+                                        <i class="bi bi-person me-1"></i> Отчество
+                                    </label>
+                                    {% for error in form.middle_name.errors %}
+                                        <div class="invalid-feedback">{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+
+                            <!-- Дополнительные поля -->
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="number" 
+                                           name="birth_year" 
+                                           class="form-control {% if form.birth_year.errors %}is-invalid{% endif %}" 
+                                           id="id_birth_year" 
+                                           placeholder="Год рождения"
+                                           min="1900" 
+                                           max="2023">
+                                    <label for="id_birth_year">
+                                        <i class="bi bi-calendar me-1"></i> Год рождения
+                                    </label>
+                                    {% for error in form.birth_year.errors %}
+                                        <div class="invalid-feedback">{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <select name="discount_category" 
+                                            class="form-select {% if form.discount_category.errors %}is-invalid{% endif %}" 
+                                            id="id_discount_category">
+                                        <option value="">Нет скидки</option>
+                                        <option value="pensioner">Пенсионер</option>
+                                        <option value="disabled">Инвалид</option>
+                                        <option value="veteran">Ветеран</option>
+                                    </select>
+                                    <label for="id_discount_category">
+                                        <i class="bi bi-percent me-1"></i> Категория скидки
+                                    </label>
+                                    {% for error in form.discount_category.errors %}
+                                        <div class="invalid-feedback">{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Кнопка отправки -->
+                        <div class="d-grid mt-4">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="bi bi-person-check me-2"></i>Зарегистрироваться
+                            </button>
+                        </div>
+
+                        <!-- Ссылка на вход -->
+                        <div class="text-center mt-4">
+                            <p class="text-muted mb-0">
+                                Уже есть аккаунт? 
+                                <a href="{% url 'login' %}" class="text-decoration-none">
+                                    Войти в систему
+                                </a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

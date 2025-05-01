@@ -1,0 +1,202 @@
+/* Custom CSS */
+body {
+    background-color: #f8f9fa;
+}
+
+.navbar-brand {
+    font-weight: 600;
+}
+
+.main-content {
+    min-height: calc(100vh - 120px);
+}
+
+.doctor-card {
+    transition: transform 0.2s;
+}
+
+.doctor-card:hover {
+    transform: translateY(-5px);
+}
+/* Специфические стили для страницы входа */
+.login-card {
+    margin-top: 5rem;
+    border-radius: 15px;
+}
+
+.login-card .card-body {
+    padding: 2rem;
+}
+
+.login-card input.form-control {
+    border-radius: 8px;
+    padding: 12px;
+}
+
+.login-card .alert {
+    margin-bottom: 1.5rem;
+}
+.btn {
+    border-radius: 8px;
+    padding: 12px;
+    font-weight: 600;
+    transition: transform 0.2s;
+}
+
+/* Стили для формы регистрации */
+.registration-card {
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.form-floating > label {
+    padding-left: 2.5rem;
+}
+
+.form-floating > .bi {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 5;
+}
+
+.form-select {
+    background-position: right 1rem center;
+}
+/* Hero Section */
+.hero {
+    background: linear-gradient(45deg, #0d6efd, #0b5ed7);
+    padding: 5rem 0;
+}
+
+.shadow-hover {
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.shadow-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
+}
+
+/* Doctors Photos */
+.doctor-photo {
+    height: 250px;
+    object-fit: cover;
+    border-bottom: 3px solid #0d6efd;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .hero .display-4 {
+        font-size: 2.5rem;
+    }
+    
+    .hero img {
+        margin-top: 2rem;
+    }
+}
+/* Стили для страницы обращений */
+.clickable-row {
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.clickable-row:hover {
+    background-color: #f8f9fa;
+}
+
+.diagnosis-preview {
+    border-bottom: 1px dashed #999;
+    cursor: help;
+}
+
+.services-badges {
+    max-width: 300px;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.table-hover tbody tr:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 768px) {
+    .table-responsive {
+        border: 0;
+    }
+    
+    .services-badges {
+        max-width: 200px;
+    }
+}
+.service-card {
+    transition: transform 0.3s, box-shadow 0.3s;
+    border-radius: 15px;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
+}
+
+.accordion-button {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: #f8f9fa;
+}
+/* Стили для страницы врачей */
+.doctor-card {
+    transition: transform 0.3s;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.doctor-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
+}
+
+.doctor-photo {
+    height: 300px;
+    object-fit: cover;
+    border-bottom: 3px solid var(--bs-primary);
+}
+
+.no-photo {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* Стили для профиля */
+.avatar-wrapper {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    border: 3px solid #0d6efd;
+}
+
+.info-item {
+    padding: 0.75rem 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+}
+
+.card-header.bg-light {
+    background-color: rgba(13, 110, 253, 0.1) !important;
+}
+
+.list-group-item {
+    border-color: rgba(0,0,0,0.1);
+}

@@ -1,0 +1,149 @@
+{% extends 'clinic/base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero bg-primary text-white py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold mb-4">
+                    Добро пожаловать в клинику "Здоровье+"
+                </h1>
+                <p class="lead mb-4">
+                    Современная медицина с индивидуальным подходом к каждому пациенту
+                </p>
+                <div class="d-flex gap-3">
+                    <a href="{% url 'signup' %}" class="btn btn-light btn-lg">
+                        <i class="bi bi-person-plus me-2"></i>Записаться онлайн
+                    </a>
+                    <a href="{% url 'doctors_list' %}" class="btn btn-outline-light btn-lg">
+                        Наши врачи
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6 d-none d-lg-block">
+                <img src="{% static 'clinic/images/hero.png' %}" 
+                     alt="Медицинская команда" 
+                     class="img-fluid rounded-3 shadow">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">Почему выбирают нас</h2>
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-hover">
+                    <div class="card-body text-center">
+                        <i class="bi bi-heart-pulse fs-1 text-primary"></i>
+                        <h5 class="my-3">Высококлассные специалисты</h5>
+                        <p>Врачи высшей категории с опытом работы от 10 лет</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-hover">
+                    <div class="card-body text-center">
+                        <i class="bi bi-clock-history fs-1 text-primary"></i>
+                        <h5 class="my-3">Работаем 24/7</h5>
+                        <p>Круглосуточная помощь и экстренные вызовы</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-hover">
+                    <div class="card-body text-center">
+                        <i class="bi bi-shield-check fs-1 text-primary"></i>
+                        <h5 class="my-3">Современное оборудование</h5>
+                        <p>Новейшие технологии диагностики и лечения</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-hover">
+                    <div class="card-body text-center">
+                        <i class="bi bi-cash-coin fs-1 text-primary"></i>
+                        <h5 class="my-3">Доступные цены</h5>
+                        <p>Гибкая система скидок и рассрочка платежа</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Preview -->
+<section class="bg-light py-5">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>Популярные услуги</h2>
+            <a href="{% url 'services' %}" class="btn btn-link">
+                Все услуги <i class="bi bi-arrow-right"></i>
+            </a>
+        </div>
+        
+        <div class="row g-4">
+            {% for service in featured_services %}
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ service.name }}</h5>
+                        <p class="text-muted">{{ service.specialty }}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="h4 text-primary">{{ service.base_cost }} ₽</span>
+                            <a href="#" class="btn btn-primary">
+                                <i class="bi bi-calendar-plus"></i> Записаться
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Doctors Preview -->
+<section class="py-5">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>Наши врачи</h2>
+            <a href="{% url 'doctors_list' %}" class="btn btn-link">
+                Все специалисты <i class="bi bi-arrow-right"></i>
+            </a>
+        </div>
+
+        <div class="row g-4">
+            {% for doctor in featured_doctors %}
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 shadow-sm">
+                    {% if doctor.photo %}
+                    <img src="{{ doctor.photo.url }}" 
+                         class="img-fluid doctor-photo" 
+                         alt="{{ doctor.last_name }}">
+                    {% else %}
+                    <div class="no-photo text-center py-4 bg-light">
+                        <i class="bi bi-person-square fs-1 text-muted"></i>
+                    </div>
+                    {% endif %}
+                    <div class="card-body text-center">
+                        <h5 class="card-title">др. {{ doctor.last_name }}</h5>
+                        <p class="text-muted mb-1">{{ doctor.specialty }}</p>
+                        <div class="text-warning small">
+                            <p class="text-muted mb-1">{{ doctor.categories }}</p>
+                        </div>
+                        <a href="#" class="btn btn-outline-primary mt-3">
+                            <i class="bi bi-person-lines-fill"></i> Профиль
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'clinic/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>
+            <i class="bi bi-people"></i> Наши врачи
+        </h1>
+    </div>
+
+    <div class="row g-4">
+        {% for doctor in doctors %}
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm doctor-card">
+                <div class="card-img-top">
+                    {% if doctor.photo %}
+                    <img src="{{ doctor.photo.url }}" 
+                         class="img-fluid doctor-photo" 
+                         alt="{{ doctor.last_name }}">
+                    {% else %}
+                    <div class="no-photo text-center py-4 bg-light">
+                        <i class="bi bi-person-square fs-1 text-muted"></i>
+                    </div>
+                    {% endif %}
+                </div>
+                
+                <div class="card-body">
+                    <h5 class="card-title">
+                        {{ doctor.last_name }} 
+                        {{ doctor.first_name }} 
+                        {{ doctor.middle_name }}
+                    </h5>
+                    
+                    <div class="doctor-info">
+                        <div class="mb-2">
+                            <i class="bi bi-hospital me-2 text-primary"></i>
+                            {{ doctor.specialty }}
+                        </div>
+                        
+                        <div class="mb-3">
+                            <i class="bi bi-award me-2 text-primary"></i>
+                            Категория: {{ doctor.get_category_display }}
+                        </div>
+                    </div>
+
+                    <div class="d-grid">
+                        <a href="#" class="btn btn-outline-primary">
+                            <i class="bi bi-calendar-check"></i> Записаться
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center py-4 text-muted">
+            Врачи не найдены
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
