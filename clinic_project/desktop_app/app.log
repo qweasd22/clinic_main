@@ -103,3 +103,13 @@
 2025-05-01 14:38:46,249 [DEBUG] http://localhost:18800 "GET /api/admin/services/ HTTP/1.1" 200 187
 2025-05-01 14:38:46,255 [DEBUG] http://localhost:18800 "GET /api/admin/services/ HTTP/1.1" 200 187
 2025-05-01 14:39:00,421 [DEBUG] http://localhost:18800 "POST /api/admin/doctors/ HTTP/1.1" 400 56
+2025-05-01 14:45:03,804 [DEBUG] Starting new HTTP connection (1): localhost:18800
+2025-05-01 14:45:06,726 [DEBUG] http://localhost:18800 "POST /api-token-auth/ HTTP/1.1" 200 52
+2025-05-01 14:45:06,727 [DEBUG] Starting new HTTP connection (1): localhost:18800
+2025-05-01 14:45:08,775 [DEBUG] http://localhost:18800 "GET /api/admin/services/ HTTP/1.1" 200 187
+2025-05-01 14:45:08,805 [DEBUG] http://localhost:18800 "GET /api/admin/visits/ HTTP/1.1" 200 145
+2025-05-01 14:45:08,813 [DEBUG] http://localhost:18800 "GET /api/admin/doctors/ HTTP/1.1" 200 176
+2025-05-01 14:45:08,821 [DEBUG] http://localhost:18800 "GET /api/admin/services/ HTTP/1.1" 200 187
+2025-05-01 14:45:08,827 [DEBUG] http://localhost:18800 "GET /api/admin/services/ HTTP/1.1" 200 187
+2025-05-01 14:45:21,956 [DEBUG] http://localhost:18800 "POST /api/admin/doctors/ HTTP/1.1" 201 201
+2025-05-01 14:45:21,960 [DEBUG] http://localhost:18800 "GET /api/admin/doctors/ HTTP/1.1" 200 378

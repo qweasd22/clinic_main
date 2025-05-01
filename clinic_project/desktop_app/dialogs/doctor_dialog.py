@@ -1,6 +1,6 @@
 from PyQt6.QtWidgets import (
     QDialog, QFormLayout, QLineEdit, QComboBox, QPushButton, 
-    QFileDialog, QLabel, QDialogButtonBox, QDoubleSpinBox, QSpinBox
+    QFileDialog, QLabel, QDialogButtonBox, QSpinBox
 )
 from PyQt6.QtCore import Qt
 from pathlib import Path
@@ -24,17 +24,19 @@ class DoctorDialog(QDialog):
         self.first_name_input = QLineEdit()
         self.middle_name_input = QLineEdit()
         self.specialty_input = QLineEdit()
+        
+        # Категории с числовыми кодами
         self.category_input = QComboBox()
-        self.category_input.addItems(["Вторая", "Первая", "Высшая"])
+        self.category_input.addItem("Высшая", 3)
+        self.category_input.addItem("Первая", 2)
+        self.category_input.addItem("Вторая", 1)
         
         self.photo_label = QLabel("Фото не выбрано")
         self.photo_btn = QPushButton("Выбрать фото...")
         self.photo_btn.clicked.connect(self.select_photo)
         self.experience_input = QSpinBox()
         self.experience_input.setRange(0, 100)
-        
 
-        
         # Кнопки
         buttons = QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel
         self.button_box = QDialogButtonBox(buttons)
@@ -67,20 +69,31 @@ class DoctorDialog(QDialog):
             self.photo_label.setText(Path(path).name)
 
     def get_data(self):
-        return {
+        data = {
             "last_name": self.last_name_input.text(),
             "first_name": self.first_name_input.text(),
             "middle_name": self.middle_name_input.text(),
             "specialty": self.specialty_input.text(),
-            "category": self.category_input.currentText(),
-            "photo": self.photo_path,
+            "category": self.category_input.currentData(),
+            "photo": self.photo_path if self.photo_path else None,
             "experience": self.experience_input.value(),
         }
+        
+        if self.doctor_data and 'id' in self.doctor_data:
+            data['id'] = self.doctor_data['id']
+            
+        return data
 
     def load_existing_data(self):
         self.last_name_input.setText(self.doctor_data.get('last_name', ''))
         self.first_name_input.setText(self.doctor_data.get('first_name', ''))
         self.middle_name_input.setText(self.doctor_data.get('middle_name', ''))
         self.specialty_input.setText(self.doctor_data.get('specialty', ''))
-        self.category_input.setCurrentText(self.doctor_data.get('category', ''))
+        
+        # Установка категории по значению
+        category_value = self.doctor_data.get('category', 1)
+        index = self.category_input.findData(category_value)
+        if index >= 0:
+            self.category_input.setCurrentIndex(index)
+            
         self.experience_input.setValue(self.doctor_data.get('experience', 0))
