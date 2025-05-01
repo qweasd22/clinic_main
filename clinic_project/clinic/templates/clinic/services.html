@@ -29,12 +29,7 @@
                             <span class="h4 text-success">
                                 {{ service.base_cost }} ₽
                             </span>
-                            {% if user.is_authenticated %}
-                            <a href="#" 
-                               class="btn btn-primary btn-sm">
-                                Записаться
-                            </a>
-                            {% endif %}
+                            
                         </div>
                         {% if user.is_authenticated and user.patient.discount_category %}
                         <small class="text-muted">

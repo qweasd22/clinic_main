@@ -1,13 +1,15 @@
+from pyexpat.errors import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from .models import Doctor, Service, Visit, Patient
-from .forms import PatientSignUpForm
+from .forms import PatientSignUpForm, AppointmentForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login,logout
 from django.views.generic import ListView
 from django.contrib.auth.views import LoginView
 from django.shortcuts import get_object_or_404
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 def home(request):
     featured_services = Service.objects.all()[:3]
@@ -64,7 +66,20 @@ def logout_view(request):
     logout(request)
     return redirect('home')
 
-
+@login_required
+def create_appointment(request):
+    if request.method == 'POST':
+        form = AppointmentForm(request.POST)
+        if form.is_valid():
+            appointment = form.save(commit=False)
+            appointment.patient = request.user.patient
+            appointment.save()
+            
+            return redirect('visits')
+    else:
+        form = AppointmentForm()
+    
+    return render(request, 'clinic/create_appointment.html', {'form': form})
 
 class CustomLoginView(LoginView):
     template_name = 'clinic/login.html'

@@ -2,7 +2,16 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models import Sum
 from decimal import Decimal 
+from django.utils import timezone
+from django.contrib.auth import get_user_model
 
+User = get_user_model()
+
+class Schedule(models.Model):
+    doctor = models.ForeignKey('Doctor', on_delete=models.CASCADE)
+    date = models.DateField("Дата приёма")
+    start_time = models.TimeField("Начало работы")
+    end_time = models.TimeField("Окончание работы")
 class Doctor(models.Model):
     CATEGORY_CHOICES = [
         (1, 'Вторая категория'),
@@ -43,9 +52,22 @@ class Service(models.Model):
         return self.name
 
 class Visit(models.Model):
-    patient = models.ForeignKey(Patient, on_delete=models.CASCADE, verbose_name="Пациент")
-    date = models.DateField("Дата обращения", auto_now_add=True)
-    diagnosis = models.TextField("Диагноз")
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
+    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
+    service = models.ForeignKey(Service, on_delete=models.CASCADE)
+    date = models.DateField("Дата приема")
+    time = models.TimeField("Время приема")
+    status = models.CharField(
+        max_length=20,
+        choices=[
+            ('pending', 'Ожидает подтверждения'),
+            ('confirmed', 'Подтвержден'),
+            ('completed', 'Завершен'),
+            ('canceled', 'Отменен')
+        ],
+        default='pending'
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
     
     @property
     def total_cost(self):

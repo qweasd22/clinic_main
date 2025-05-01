@@ -26,6 +26,31 @@ class PatientSignUpForm(UserCreationForm):
         )
         return user
     
+from django import forms
+from django.utils import timezone
+from .models import Visit
 
+class AppointmentForm(forms.ModelForm):
+    class Meta:
+        model = Visit
+        fields = ['doctor', 'service', 'date', 'time']
+        widgets = {
+            'date': forms.DateInput(attrs={'type': 'date'}),
+            'time': forms.TimeInput(attrs={'type': 'time'})
+        }
+
+    def clean(self):
+        cleaned_data = super().clean()
+        date = cleaned_data.get('date')
+        time = cleaned_data.get('time')
+        doctor = cleaned_data.get('doctor')
+        
+        if date < timezone.now().date():
+            raise forms.ValidationError("Нельзя записаться на прошедшую дату")
+            
+        if Visit.objects.filter(doctor=doctor, date=date, time=time).exists():
+            raise forms.ValidationError("Это время уже занято")
+            
+        return cleaned_data
     
     
